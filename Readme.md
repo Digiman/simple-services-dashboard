@@ -16,7 +16,7 @@ solution it can be added here to monitor.
 ![The service externals!](docs/images/SimpleDashboardService-ServiceExternals.png "The service externals")
 
 Details about the service:
-* [Service usage]() - how to use the service and how it works
+* [Service usage](docs/ServiceUsage.md) - how to use the service and how it works
 * [Services Configuration to monitor](docs/ServicesConfiguration.md) - how to edit configuration for monitored services
 * [Add the new service support](docs/AddNewService.md) - how to add the new service
 
