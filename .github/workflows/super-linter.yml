@@ -23,7 +23,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Chechout code
         uses: actions/checkout@v3
-      
+
+      - name: Super-Linter Lint the code
+        uses: github/super-linter@v4.9.2
+        env:
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  super-lint-windows:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Chechout code
+        uses: actions/checkout@v3
+
       - name: Super-Linter Lint the code
         uses: github/super-linter@v4.9.2
         env:
