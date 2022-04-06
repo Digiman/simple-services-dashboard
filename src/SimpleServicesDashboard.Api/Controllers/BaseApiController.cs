@@ -83,7 +83,7 @@ namespace SimpleServicesDashboard.Api.Controllers
         {
             var response = await Mediator.Send(request);
 
-            return (TResult) response;
+            return (TResult)response;
         }
 
         /// <summary>

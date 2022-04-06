@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -28,7 +28,7 @@ namespace SimpleServicesDashboard.Api.Pages
         {
             var serviceStatus = await _servicesStatusService.GetServiceDetailsAsync(serviceCode, environment);
 
-            var result =  new ServiceStatusViewModel
+            var result = new ServiceStatusViewModel
             {
                 Url = serviceStatus.Url,
                 ServiceName = serviceStatus.ServiceName,

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Serilog.Configuration;
 using Serilog.Enrichers.Custom.Enrichers;
 
@@ -20,10 +20,10 @@ namespace Serilog.Enrichers.Custom
             {
                 throw new ArgumentNullException(nameof(enrichmentConfiguration));
             }
-            
+
             return enrichmentConfiguration.With<EnvironmentNameEnricher>();
         }
-        
+
         /// <summary>
         /// Enrich log events with an EC2-INSTANCE-ID property containing the current EC2 instance Id.
         /// </summary>

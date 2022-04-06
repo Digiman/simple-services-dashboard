@@ -1,4 +1,4 @@
-﻿using Dodo.HttpClientResiliencePolicies;
+using Dodo.HttpClientResiliencePolicies;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Clients;
 using SimpleServicesDashboard.Infrastructure.ServiceAccess;

@@ -1,4 +1,4 @@
-﻿using SimpleServicesDashboard.Common.Configuration;
+using SimpleServicesDashboard.Common.Configuration;
 using Microsoft.Extensions.Configuration;
 
 namespace SimpleServicesDashboard.Common.Extensions
@@ -9,7 +9,7 @@ namespace SimpleServicesDashboard.Common.Extensions
         {
             return configuration.GetSection(nameof(HealthCheckOptions)).Get<HealthCheckOptions>();
         }
-        
+
         public static ServicesConfigurationOptions GetServicesConfigurationOptions(this IConfiguration configuration)
         {
             return configuration.GetSection(nameof(ServicesConfigurationOptions)).Get<ServicesConfigurationOptions>();

@@ -1,4 +1,4 @@
-﻿using SimpleServicesDashboard.Api.Infrastructure.Helpers;
+using SimpleServicesDashboard.Api.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -72,7 +72,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
             return app;
         }
 
-         /// <summary>
+        /// <summary>
         /// Configure Security Headers for the web/api application.
         /// </summary>
         /// <param name="app">Application builder.</param>

@@ -1,4 +1,4 @@
-﻿namespace SimpleServicesDashboard.Infrastructure.Models.EmailService
+namespace SimpleServicesDashboard.Infrastructure.Models.EmailService
 {
     /// <summary>
     /// Model with teh status response from the Email service.

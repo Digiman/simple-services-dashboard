@@ -1,4 +1,4 @@
-﻿namespace SimpleServicesDashboard.Api.Models
+namespace SimpleServicesDashboard.Api.Models
 {
     /// <summary>
     /// Model to see the service status details.

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -183,7 +183,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
             return services;
         }
 
-         /// <summary>
+        /// <summary>
         /// Configure settings to process errors inside the application and API in general to return ProblemDetail result.
         /// </summary>
         /// <param name="options">Options for ProblemDetails middleware.</param>
@@ -203,7 +203,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
             // Map custom validation exception with validation errors in the pipeline (MediatR CQRS)
             options.Map<ValidationException>(exception =>
             {
-                var validationProblemDetails  = new ValidationProblemDetails(exception.Errors);
+                var validationProblemDetails = new ValidationProblemDetails(exception.Errors);
                 validationProblemDetails.Status = StatusCodes.Status422UnprocessableEntity;
                 return validationProblemDetails;
             });
@@ -287,7 +287,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
         private static IHealthChecksBuilder AddHealthChecksConfiguration(this IServiceCollection services)
         {
             var builder = services.AddHealthChecks()
-                .AddMemoryHealthCheck(HealthStatus.Degraded, new[] {"monitoring"});
+                .AddMemoryHealthCheck(HealthStatus.Degraded, new[] { "monitoring" });
 
             return builder;
         }

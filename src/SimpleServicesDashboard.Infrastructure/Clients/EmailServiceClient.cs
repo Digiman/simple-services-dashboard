@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 
 namespace SimpleServicesDashboard.Infrastructure.Clients

@@ -1,4 +1,4 @@
-﻿namespace SimpleServicesDashboard.Common.Configuration
+namespace SimpleServicesDashboard.Common.Configuration
 {
     /// <summary>
     /// Configuration for Health Checks and UI.

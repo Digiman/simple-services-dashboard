@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using SimpleServicesDashboard.Application.Models;
 
 namespace SimpleServicesDashboard.Application.Services.Interfaces

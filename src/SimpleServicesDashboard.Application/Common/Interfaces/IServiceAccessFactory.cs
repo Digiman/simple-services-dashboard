@@ -1,4 +1,4 @@
-﻿namespace SimpleServicesDashboard.Application.Common.Interfaces
+namespace SimpleServicesDashboard.Application.Common.Interfaces
 {
     /// <summary>
     /// Simple factory to create needed instance of the service access class instance to access to the service via API.

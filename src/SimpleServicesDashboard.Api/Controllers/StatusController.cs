@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using AutoMapper;
 using SimpleServicesDashboard.Application.DTOs;
 using SimpleServicesDashboard.Application.Modules.Status.Queries;

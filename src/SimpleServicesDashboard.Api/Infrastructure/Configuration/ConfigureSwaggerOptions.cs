@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace SimpleServicesDashboard.Api.Infrastructure.Configuration
 {
     /// <summary>
-    /// Configures the Swagger generation options.
+    /// Configures the Swagger generation options.`
     /// </summary>
     /// <remarks>This allows API versioning to define a Swagger document per API version after the
     /// <see cref="IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>

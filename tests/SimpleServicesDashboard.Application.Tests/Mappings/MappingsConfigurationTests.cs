@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using SimpleServicesDashboard.Application.Mapping;
 using Xunit;
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Extensions.Configuration;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.Extensions

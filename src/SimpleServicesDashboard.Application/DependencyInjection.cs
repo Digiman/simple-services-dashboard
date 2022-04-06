@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using FluentValidation;
 using SimpleServicesDashboard.Application.Common.Behaviours;
 using SimpleServicesDashboard.Application.Services;
