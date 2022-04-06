@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Development'
+      name: 'Development-Windows'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
