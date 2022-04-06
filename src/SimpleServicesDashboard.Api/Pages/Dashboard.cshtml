@@ -1,0 +1,72 @@
+﻿@page
+@using SimpleServicesDashboard.Api.Models
+@model SimpleServicesDashboard.Api.Pages.Dashboard
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Simple Services Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Simple Services Dashboard</h1>
+
+    <div class="row">
+        <div class="col">
+            <h3>Services list by environments</h3>
+            <div>
+                <p>The table bellow provided some list of the services monitored in the application and allow to get some common details about each one for the each environment.
+                    More details for each service will be added later or can be found in the each service by specific status endpoint.</p>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <th rowspan="2" class="text-center">Service</th>
+                    <th colspan="4" class="text-center">Environments</th>
+                </tr>
+                <tr>
+                    @foreach (var environment in Model.DashboardData.Environments)
+                    {
+                        <th class="text-center">@environment.Value</th>
+                    }
+                </tr>
+                @foreach (var service in Model.DashboardData.Services)
+                {
+                    <tr>
+                        <td class="align-middle">@service.Name</td>
+                        @foreach (var environment in Model.DashboardData.Environments)
+                        {
+                            <td>
+                                @if (service.Environments.ContainsKey(environment.Key))
+                                {
+                                    var model = new ServiceDetailsViewModel
+                                    {
+                                        Name = service.Name,
+                                        Code = service.Code,
+                                        EnvironmentCode = environment.Key,
+                                        ServiceDetailsModel = service.Environments[environment.Key]
+                                    };
+                                    @await Html.PartialAsync("_ServiceDetails", model)
+                                }
+                                else
+                                {
+                                    <span class="badge bg-info text-dark">No service details!</span>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

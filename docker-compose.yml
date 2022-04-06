@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  webapp:
+    container_name: dashboard-api
+    image: ${DOCKER_REGISTRY-}dashboardapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5050:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    depends_on:
+      - seq
+
+  seq:
+    container_name: dashboard-seq
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:80

@@ -1,0 +1,28 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model SimpleServicesDashboard.Api.Models.ServiceDetailsViewModel
+
+@if (string.IsNullOrEmpty(Model.ServiceDetailsModel.Version))
+{
+    <span class="badge rounded-pill bg-warning text-dark">Service is unavailable!</span>
+}
+else
+{
+    <div>
+        Version: <span class="badge rounded-pill bg-primary">@Model.ServiceDetailsModel.Version</span>
+        <br/>
+        BaseUrl: <a href="@Model.ServiceDetailsModel.BaseUrl">@Model.ServiceDetailsModel.BaseUrl</a>
+        <br/>
+        Environment Config Name: @Model.ServiceDetailsModel.EnvironmentName
+        <br/>
+        Status requested: @Model.ServiceDetailsModel.Created
+        <br/>
+        Machine/Host name: @Model.ServiceDetailsModel.MachineName
+        <br/>
+        Release date: @Model.ServiceDetailsModel.ReleaseDate
+        <br/>
+        App Start Time: @Model.ServiceDetailsModel.AppStartTime
+    </div>
+    <div>
+        <a asp-page="/ServiceStatus" asp-route-serviceCode="@Model.Code" asp-route-environment="@Model.EnvironmentCode" type="button" class="btn btn-primary btn-sm">Service Status</a>
+    </div>
+}

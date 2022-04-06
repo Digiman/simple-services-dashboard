@@ -1,0 +1,49 @@
+﻿@page "{serviceCode}/{environment}"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model SimpleServicesDashboard.Api.Pages.ServiceStatus
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Service Status Details</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>@Model.ServiceStatusViewModel.ServiceName</h1>
+            <div>
+                <p>Details about specific service. This details comes from the Status endpoint on the service and can be fetched for the each service. Here just to check if the service is working.</p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="url" class="form-label">Status endpoint</label>
+                    <input class="form-control" id="erl" aria-describedby="environmentHelp" value="@Model.ServiceStatusViewModel.Url" disabled>
+                    <div id="urlHelp" class="form-text">The URL to call the service to get the status (used here to fetch the data from the service).</div>
+                </div>
+                <div class="mb-3">
+                    <label for="environment" class="form-label">Environment</label>
+                    <input class="form-control" id="environment" aria-describedby="environmentHelp" value="@Model.ServiceStatusViewModel.Environment" disabled>
+                    <div id="environmentHelp" class="form-text">Environment name for the service details.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Service status</label>
+                    <textarea class="form-control" id="status" aria-describedby="statusHelp" rows="10">@Model.ServiceStatusViewModel.StatusData</textarea>
+                    <div id="statusHelp" class="form-text">Details from the service in JSON (status endpoint result).</div>
+                </div>
+                <a asp-page="/Dashboard" class="btn btn-primary">Go back to the dashboard</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
