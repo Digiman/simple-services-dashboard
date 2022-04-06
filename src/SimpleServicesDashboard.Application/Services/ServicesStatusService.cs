@@ -34,22 +34,6 @@ namespace SimpleServicesDashboard.Application.Services
         {
             try
             {
-                // var result = new ServicesStatusResponse();
-                //
-                // foreach (var servicesConfiguration in _servicesConfiguration.Services)
-                // {
-                //     if (CheckServiceCode(servicesConfiguration.Code))
-                //     {
-                //         result.Statuses.AddRange(await BuildServiceResponses(servicesConfiguration));
-                //     }
-                //     else
-                //     {
-                //         result.Statuses.AddRange(BuildEmptyResult(servicesConfiguration));
-                //     }
-                // }
-                //
-                // return result;
-
                 var tasks = new List<Task>();
 
                 foreach (var servicesConfiguration in _servicesConfiguration.Services)
@@ -178,15 +162,6 @@ namespace SimpleServicesDashboard.Application.Services
 
         private async Task<List<ServiceStatusResponse>> BuildServiceResponses(ServiceConfiguration servicesConfiguration)
         {
-            var result = new List<ServiceStatusResponse>();
-
-            // foreach (var servicesConfigurationEnvironment in servicesConfiguration.Environments)
-            // {
-            //     var url = servicesConfigurationEnvironment.BaseUrl + servicesConfiguration.AboutEndpoint;
-            //     result.Add(await BuildServiceResponse(url, servicesConfigurationEnvironment.Environment,
-            //         servicesConfiguration.Name, servicesConfiguration.Code, servicesConfigurationEnvironment.BaseUrl));
-            // }
-
             var tasks = new List<Task>();
 
             foreach (var servicesConfigurationEnvironment in servicesConfiguration.Environments)
@@ -197,6 +172,8 @@ namespace SimpleServicesDashboard.Application.Services
             }
 
             await Task.WhenAll(tasks);
+
+            var result = new List<ServiceStatusResponse>();
 
             foreach (var task in tasks)
             {
