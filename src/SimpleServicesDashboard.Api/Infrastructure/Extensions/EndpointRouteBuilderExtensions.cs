@@ -12,7 +12,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
     /// </summary>
     public static class EndpointRouteBuilderExtensions
     {
-        public static void AddHealthcheckEndpoints(this IEndpointRouteBuilder endpoints,
+        public static void AddHealthCheckEndpoints(this IEndpointRouteBuilder endpoints,
             Common.Configuration.HealthCheckOptions healthCheckConfig)
         {
             if (healthCheckConfig.HealthCheckUiEnabled)

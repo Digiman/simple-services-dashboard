@@ -82,7 +82,7 @@ namespace SimpleServicesDashboard.Api
                 endpoints.MapRazorPages();
 
                 // add health checks endpoints and configurations
-                endpoints.AddHealthcheckEndpoints(healthCheckConfig);
+                endpoints.AddHealthCheckEndpoints(healthCheckConfig);
             });
         }
     }

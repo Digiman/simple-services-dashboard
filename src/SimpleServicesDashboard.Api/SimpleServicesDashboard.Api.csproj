@@ -58,9 +58,5 @@
       <ProjectReference Include="..\SimpleServicesDashboard.Common\SimpleServicesDashboard.Common.csproj" />
       <ProjectReference Include="..\SimpleServicesDashboard.Infrastructure\SimpleServicesDashboard.Infrastructure.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\images\logo.svg" />
-    </ItemGroup>
-
+    
 </Project>
