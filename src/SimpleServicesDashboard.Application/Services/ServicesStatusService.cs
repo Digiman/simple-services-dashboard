@@ -34,29 +34,24 @@ namespace SimpleServicesDashboard.Application.Services
         {
             try
             {
-                var tasks = new List<Task>();
+                List<Task<List<ServiceStatusResponse>>> tasks = new();
 
                 foreach (var servicesConfiguration in _servicesConfiguration.Services)
                 {
-                    if (CheckServiceCode(servicesConfiguration.Code))
-                    {
-                        tasks.Add(BuildServiceResponses(servicesConfiguration));
-                    }
-                    else
-                    {
-                        tasks.Add(BuildEmptyResultAsync(servicesConfiguration));
-                    }
+                    tasks.Add(CheckServiceCode(servicesConfiguration.Code)
+                        ? BuildServiceResponsesAsync(servicesConfiguration)
+                        : BuildEmptyResultAsync(servicesConfiguration));
                 }
 
-                await Task.WhenAll(tasks);
-
+                var taskResults = await Task.WhenAll(tasks);
+                
                 var result = new ServicesStatusResponse();
 
-                foreach (var task in tasks)
+                foreach (var taskResult in taskResults)
                 {
-                    result.Statuses.AddRange(((Task<List<ServiceStatusResponse>>)task).Result);
+                    result.Statuses.AddRange(taskResult);
                 }
-
+                
                 return result;
             }
             catch (Exception ex)
@@ -79,7 +74,7 @@ namespace SimpleServicesDashboard.Application.Services
                 {
                     if (CheckServiceCode(code))
                     {
-                        result.Statuses.AddRange(await BuildServiceResponses(serviceConfiguration));
+                        result.Statuses.AddRange(await BuildServiceResponsesAsync(serviceConfiguration));
                     }
                     else
                     {
@@ -110,7 +105,7 @@ namespace SimpleServicesDashboard.Application.Services
                     var url = serviceEnvironment.BaseUrl + serviceConfiguration.AboutEndpoint;
 
                     return CheckServiceCode(serviceConfiguration.Code)
-                        ? await BuildServiceResponse(url, environment, serviceConfiguration.Name, serviceConfiguration.Code, serviceEnvironment.BaseUrl)
+                        ? await BuildServiceResponseAsync(url, environment, serviceConfiguration.Name, serviceConfiguration.Code, serviceEnvironment.BaseUrl)
                         : BuildEmptyResult(serviceConfiguration, serviceEnvironment);
                 }
             }
@@ -132,7 +127,7 @@ namespace SimpleServicesDashboard.Application.Services
                     var url = serviceEnvironment.BaseUrl + serviceConfiguration.AboutEndpoint;
 
                     return CheckServiceCode(serviceConfiguration.Code)
-                        ? await BuildServiceDetailsResponse(url, environmentName, serviceConfiguration.Name, serviceConfiguration.Code)
+                        ? await BuildServiceDetailsResponseAsync(url, environmentName, serviceConfiguration.Name, serviceConfiguration.Code)
                         : BuildEmptyServiceDetailsResult(serviceConfiguration, environmentName);
                 }
             }
@@ -160,30 +155,23 @@ namespace SimpleServicesDashboard.Application.Services
 
         #region Common methods to get the service status.
 
-        private async Task<List<ServiceStatusResponse>> BuildServiceResponses(ServiceConfiguration servicesConfiguration)
+        private async Task<List<ServiceStatusResponse>> BuildServiceResponsesAsync(ServiceConfiguration servicesConfiguration)
         {
-            var tasks = new List<Task>();
+            List<Task<ServiceStatusResponse>> tasks = new();
 
             foreach (var servicesConfigurationEnvironment in servicesConfiguration.Environments)
             {
                 var url = servicesConfigurationEnvironment.BaseUrl + servicesConfiguration.AboutEndpoint;
-                tasks.Add(BuildServiceResponse(url, servicesConfigurationEnvironment.Environment,
+                tasks.Add(BuildServiceResponseAsync(url, servicesConfigurationEnvironment.Environment,
                     servicesConfiguration.Name, servicesConfiguration.Code, servicesConfigurationEnvironment.BaseUrl));
             }
 
-            await Task.WhenAll(tasks);
+            var taskResults = await Task.WhenAll(tasks);
 
-            var result = new List<ServiceStatusResponse>();
-
-            foreach (var task in tasks)
-            {
-                result.Add(((Task<ServiceStatusResponse>)task).Result);
-            }
-
-            return result;
+            return taskResults.ToList();
         }
 
-        private async Task<ServiceStatusResponse> BuildServiceResponse(string url, string environment, string name, string code, string baseUrl)
+        private async Task<ServiceStatusResponse> BuildServiceResponseAsync(string url, string environment, string name, string code, string baseUrl)
         {
             var serviceAccess = _serviceAccessFactory.GetServiceAccess(code);
             var response = await serviceAccess.GetServiceStatus(url);
@@ -208,7 +196,7 @@ namespace SimpleServicesDashboard.Application.Services
             return CreateDefaultResponse(code, name, environment);
         }
 
-        private async Task<ServiceDetailsResponse> BuildServiceDetailsResponse(string url, string environment, string name, string code)
+        private async Task<ServiceDetailsResponse> BuildServiceDetailsResponseAsync(string url, string environment, string name, string code)
         {
             var serviceAccess = _serviceAccessFactory.GetServiceAccess(code);
             var result = await serviceAccess.GetServiceStatus(url);
@@ -240,7 +228,7 @@ namespace SimpleServicesDashboard.Application.Services
                 });
         }
 
-        private static Task<IEnumerable<ServiceStatusResponse>> BuildEmptyResultAsync(ServiceConfiguration servicesConfiguration)
+        private static Task<List<ServiceStatusResponse>> BuildEmptyResultAsync(ServiceConfiguration servicesConfiguration)
         {
             return Task.FromResult(servicesConfiguration.Environments.Select(servicesConfigurationEnvironment =>
                 new ServiceStatusResponse
@@ -251,7 +239,7 @@ namespace SimpleServicesDashboard.Application.Services
                     Created = DateTime.UtcNow,
                     EnvironmentName = servicesConfigurationEnvironment.Environment,
                     BaseUrl = servicesConfigurationEnvironment.BaseUrl
-                }));
+                }).ToList());
         }
 
         private static ServiceStatusResponse BuildEmptyResult(ServiceConfiguration servicesConfiguration, ServiceEnvironment serviceEnvironment)

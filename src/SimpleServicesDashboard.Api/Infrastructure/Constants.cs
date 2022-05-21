@@ -5,7 +5,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure
     /// <summary>
     /// Some constants for the API.
     /// </summary>
-    public static class Constants
+    public readonly struct Constants
     {
         /// <summary>
         /// Name of the API - to use on OpenAPI specification.

@@ -8,10 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{266B464D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Common", "src\SimpleServicesDashboard.Common\SimpleServicesDashboard.Common.csproj", "{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extensions", "extensions", "{EBDCDBF0-19F2-42D7-88CA-0BD64762791E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Enrichers.Custom", "extensions\Serilog.Enrichers.Custom\Serilog.Enrichers.Custom.csproj", "{A94843EF-5270-4530-8849-E8F34CD6C75D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Application", "src\SimpleServicesDashboard.Application\SimpleServicesDashboard.Application.csproj", "{42D8E9FB-7EDF-448E-A798-E9C474C47A73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Infrastructure", "src\SimpleServicesDashboard.Infrastructure\SimpleServicesDashboard.Infrastructure.csproj", "{8A38D3A0-38FF-4B61-A9CC-3B97182C18A3}"
@@ -34,10 +30,6 @@ Global
 		{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A94843EF-5270-4530-8849-E8F34CD6C75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A94843EF-5270-4530-8849-E8F34CD6C75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A94843EF-5270-4530-8849-E8F34CD6C75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A94843EF-5270-4530-8849-E8F34CD6C75D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42D8E9FB-7EDF-448E-A798-E9C474C47A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42D8E9FB-7EDF-448E-A798-E9C474C47A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42D8E9FB-7EDF-448E-A798-E9C474C47A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,7 +50,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F98ED69A-9575-4A09-B057-B4777D1CEA2B} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
 		{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
-		{A94843EF-5270-4530-8849-E8F34CD6C75D} = {EBDCDBF0-19F2-42D7-88CA-0BD64762791E}
 		{42D8E9FB-7EDF-448E-A798-E9C474C47A73} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
 		{8A38D3A0-38FF-4B61-A9CC-3B97182C18A3} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
 		{F5DEFFA1-774F-44F0-9FC8-9190D2F5AFC9} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
