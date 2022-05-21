@@ -22,11 +22,12 @@ namespace SimpleServicesDashboard.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                        .UseStartup<Startup>()
                         .ConfigureKestrel(options =>
                         {
                             options.AddServerHeader = false;
-                        });
+                        })
+                        .UseIISIntegration()
+                        .UseStartup<Startup>();
                 });
     }
 }
