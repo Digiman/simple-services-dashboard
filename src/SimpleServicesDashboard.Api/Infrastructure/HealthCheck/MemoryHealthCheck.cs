@@ -4,15 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
+using SimpleServicesDashboard.Common.Configuration;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck
-{
-    public sealed class MemoryCheckOptions
-    {
-        // Failure threshold (in bytes)
-        public long Threshold { get; set; } = 1024L * 1024L * 256L;
-    }
-
+{ 
     public sealed class MemoryHealthCheck : IHealthCheck
     {
         public const string Name = "memory";
@@ -25,9 +20,9 @@ namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck
 
         public Task<HealthCheckResult> CheckHealthAsync(
             HealthCheckContext context,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
-            var options = _options.Get(context.Registration.Name);
+            var options = _options.Get(nameof(MemoryCheckOptions));
 
             // Include GC information in the reported diagnostics.
             var allocated = GC.GetTotalMemory(forceFullCollection: false);
