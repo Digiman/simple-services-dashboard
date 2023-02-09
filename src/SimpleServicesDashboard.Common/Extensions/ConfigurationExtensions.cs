@@ -9,6 +9,11 @@ namespace SimpleServicesDashboard.Common.Extensions
         {
             return configuration.GetSection(nameof(HealthCheckOptions)).Get<HealthCheckOptions>();
         }
+        
+        public static MemoryCheckOptions GetMemoryCheckConfiguration(this IConfiguration configuration)
+        {
+            return configuration.GetSection(nameof(MemoryCheckOptions)).Get<MemoryCheckOptions>();
+        }
 
         public static ServicesConfigurationOptions GetServicesConfigurationOptions(this IConfiguration configuration)
         {

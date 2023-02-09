@@ -21,6 +21,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using ProblemDetailsOptions = Hellang.Middleware.ProblemDetails.ProblemDetailsOptions;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
 {
@@ -44,7 +45,7 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
             bool httpServices = false)
         {
             // add all DI modules
-            services.AddExternalServices();
+            services.AddExternalServices(configuration);
 
             //-----------------------------------------------
             // Web application specific
@@ -61,9 +62,9 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
             return services;
         }
 
-        private static IServiceCollection AddExternalServices(this IServiceCollection services)
+        private static IServiceCollection AddExternalServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddConfiguration();
+            services.AddConfiguration(configuration);
             services.AddApplication();
             services.AddInfrastructure();
 
