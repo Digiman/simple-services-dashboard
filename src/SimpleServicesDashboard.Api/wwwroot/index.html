@@ -3,12 +3,86 @@
 <head>
     <meta charset="utf-8" />
     <title>Simple Services Dashboard</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #444444;
+            font-size: 28px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .btn {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #444444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            height: 150px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            width: 150px;
+        }
+        .btn:hover {
+            background-color: #f5f5f5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .swagger-icon:before {
+            content: url('./icons/swagger.svg');
+        }
+        .healthcheck-dashboard-icon:before {
+            content: url('./icons/healthcheck-dashboard.svg');
+        }
+        .healthcheck-icon:before {
+            content: url('./icons/simple-healthcheck.svg');
+        }
+        .dashboard-icon:before {
+            content: url('./icons/dashboard.svg');
+        }
+    </style>
 </head>
-<body style="font-family: sans-serif;">
-    <h1>Simple Services Dashboard</h1>
-    <div>See <a href="./swagger">API documentation (Swagger UI)</a> to try to use API.</div>
-    <div>See <a href="./healthcheck-dashboard">Health Check Dashboard</a> to analyze the health of the application.</div>
-    <div>See <a href="./healthcheck">Simple Health Check</a> to use by Load Balancer.</div>
-    <div>See <a href="./Dashboard">Dashboard</a> to see the details about monitored services.</div>
+<body>
+<h1>Simple Services Dashboard</h1>
+<div class="container">
+    <a href="./swagger" class="btn">
+        <div class="icon swagger-icon"></div>
+        <div>Swagger</div>
+    </a>
+    <a href="./healthcheck-dashboard" class="btn">
+        <div class="icon healthcheck-dashboard-icon"></div>
+        <div>Health Check Dashboard</div>
+    </a>
+    <a href="./healthcheck" class="btn">
+        <div class="icon healthcheck-icon"></div>
+        <div>Simple Health Check</div>
+    </a>
+    <a href="./Dashboard" class="btn">
+        <div class="icon dashboard-icon"></div>
+        <div>Dashboard</div>
+    </a>
+</div>
 </body>
 </html>
