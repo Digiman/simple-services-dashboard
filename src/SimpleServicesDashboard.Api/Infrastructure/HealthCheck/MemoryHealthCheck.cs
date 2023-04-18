@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Common.Configuration;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck
-{ 
+{
     public sealed class MemoryHealthCheck : IHealthCheck
     {
         public const string Name = "memory";

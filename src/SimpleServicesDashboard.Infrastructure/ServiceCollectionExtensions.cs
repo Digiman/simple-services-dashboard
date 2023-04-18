@@ -1,8 +1,8 @@
 using Dodo.HttpClientResiliencePolicies;
+using Microsoft.Extensions.DependencyInjection;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Clients;
 using SimpleServicesDashboard.Infrastructure.ServiceAccess;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace SimpleServicesDashboard.Infrastructure
 {

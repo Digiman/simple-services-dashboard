@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace SimpleServicesDashboard.Application.Services
 {
@@ -44,14 +44,14 @@ namespace SimpleServicesDashboard.Application.Services
                 }
 
                 var taskResults = await Task.WhenAll(tasks);
-                
+
                 var result = new ServicesStatusResponse();
 
                 foreach (var taskResult in taskResults)
                 {
                     result.Statuses.AddRange(taskResult);
                 }
-                
+
                 return result;
             }
             catch (Exception ex)

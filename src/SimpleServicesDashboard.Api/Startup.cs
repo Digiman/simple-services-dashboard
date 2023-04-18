@@ -1,12 +1,12 @@
 using Hellang.Middleware.ProblemDetails;
-using SimpleServicesDashboard.Api.Infrastructure.Extensions;
-using SimpleServicesDashboard.Common.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleServicesDashboard.Api.Infrastructure.Extensions;
+using SimpleServicesDashboard.Common.Extensions;
 
 namespace SimpleServicesDashboard.Api
 {

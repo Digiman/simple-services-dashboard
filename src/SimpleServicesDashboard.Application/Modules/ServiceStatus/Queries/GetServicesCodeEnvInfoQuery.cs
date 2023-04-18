@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Extensions;
-using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries
 {

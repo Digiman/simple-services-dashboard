@@ -30,7 +30,7 @@ public static class ValidationOptionsExtensions
             .ValidateDataAnnotations()
             .ValidateOnStart();
     }
-    
+
     /// <summary>
     /// Configure options with validation by using FluentValidation.
     /// </summary>
@@ -87,7 +87,7 @@ public class FluentValidationOptions<TOptions> : IValidateOptions<TOptions> wher
 
         // Ensure options are provided to validate against
         ArgumentNullException.ThrowIfNull(options);
-        
+
         // Validators are registered as scoped, so need to create a scope,
         // as we will be called from the root scope
         using var scope = _serviceProvider.CreateScope();

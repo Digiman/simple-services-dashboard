@@ -1,9 +1,9 @@
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
-using Microsoft.Extensions.Logging;
 
 namespace SimpleServicesDashboard.Application.Services
 {

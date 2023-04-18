@@ -8,9 +8,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.WebUtilities;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Helpers;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace SimpleServicesDashboard.Infrastructure.Clients
 {

@@ -1,8 +1,8 @@
-using SimpleServicesDashboard.Api.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
+using SimpleServicesDashboard.Api.Infrastructure.Helpers;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.Extensions

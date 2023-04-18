@@ -1,6 +1,6 @@
-using SimpleServicesDashboard.Common.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SimpleServicesDashboard.Common.Configuration;
 
 namespace SimpleServicesDashboard.Common.Extensions
 {
@@ -17,7 +17,7 @@ namespace SimpleServicesDashboard.Common.Extensions
             services.AddWithValidation<MemoryCheckOptions>(nameof(MemoryCheckOptions));
             services.AddWithValidation<ServicesConfigurationOptions>(nameof(ServicesConfigurationOptions));
         }
-        
+
         /// <summary>
         /// Configure application custom configuration wth validation by using FluentValidation.
         /// </summary>

@@ -1,10 +1,10 @@
 using System.Reflection;
 using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using SimpleServicesDashboard.Application.Common.Behaviours;
 using SimpleServicesDashboard.Application.Services;
 using SimpleServicesDashboard.Application.Services.Interfaces;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace SimpleServicesDashboard.Application
 {
@@ -27,7 +27,7 @@ namespace SimpleServicesDashboard.Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // register MediatR stuff
-            services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));

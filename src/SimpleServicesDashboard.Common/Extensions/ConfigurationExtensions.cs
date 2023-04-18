@@ -1,5 +1,5 @@
-using SimpleServicesDashboard.Common.Configuration;
 using Microsoft.Extensions.Configuration;
+using SimpleServicesDashboard.Common.Configuration;
 
 namespace SimpleServicesDashboard.Common.Extensions
 {
@@ -12,7 +12,7 @@ namespace SimpleServicesDashboard.Common.Extensions
         {
             return configuration.GetSection(nameof(HealthCheckOptions)).Get<HealthCheckOptions>();
         }
-        
+
         public static MemoryCheckOptions GetMemoryCheckConfiguration(this IConfiguration configuration)
         {
             return configuration.GetSection(nameof(MemoryCheckOptions)).Get<MemoryCheckOptions>();

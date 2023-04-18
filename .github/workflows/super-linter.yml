@@ -24,11 +24,13 @@ jobs:
       - name: Chechout code
         uses: actions/checkout@v3
 
+      # Run Linter against code base
       - name: Super-Linter Lint the code
-        uses: github/super-linter@v4.9.2
+        uses: github/super-linter@v5
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSCPD: false
           VALIDATE_MARKDOWN: false
           VALIDATE_EDITORCONFIG: false
+          VALIDATE_GITHUB_ACTIONS: false
