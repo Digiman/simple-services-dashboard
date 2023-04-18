@@ -3,6 +3,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace SimpleServicesDashboard.Common.Extensions
 {
+    /// <summary>
+    /// Simple extensions for configuration.
+    /// </summary>
     public static class ConfigurationExtensions
     {
         public static HealthCheckOptions GetHealthCheckConfiguration(this IConfiguration configuration)

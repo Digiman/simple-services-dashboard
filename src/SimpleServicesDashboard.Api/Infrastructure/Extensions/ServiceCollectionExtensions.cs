@@ -65,6 +65,8 @@ namespace SimpleServicesDashboard.Api.Infrastructure.Extensions
         private static IServiceCollection AddExternalServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddConfiguration(configuration);
+            // or use more complex with FluentValidation
+            // services.AddConfigurationWithFluentValidation();
             services.AddApplication();
             services.AddInfrastructure();
 

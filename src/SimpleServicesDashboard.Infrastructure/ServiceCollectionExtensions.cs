@@ -9,7 +9,7 @@ namespace SimpleServicesDashboard.Infrastructure
     /// <summary>
     /// Dependency registrator for Application stuff.
     /// </summary>
-    public static class DependencyInjection
+    public static class ServiceCollectionExtensions
     {
         /// <summary>
         /// Register application level dependencies and services.
