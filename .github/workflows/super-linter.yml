@@ -1,4 +1,10 @@
-name: Super-Linter
+# This workflow executes several linters on changed files based on languages used in your code base whenever
+# you push a code or open a pull request.
+#
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/github/super-linter
+name: Lint Code Base
 
 # Controls when the workflow will run
 on:
@@ -14,18 +20,21 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  super-lint:
+  run-lint:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Chechout code
+      - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0
 
       # Run Linter against code base
-      - name: Super-Linter Lint the code
+      - name: Lint Code Base
         uses: github/super-linter@v5
         env:
           DEFAULT_BRANCH: master

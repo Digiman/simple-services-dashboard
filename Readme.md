@@ -1,5 +1,11 @@
 # Simple Services Dashboard
 
+[![Lint Code Base](https://github.com/Digiman/simple-services-dashboard/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Digiman/simple-services-dashboard/actions/workflows/super-linter.yml)
+[![CodeQL](https://github.com/Digiman/simple-services-dashboard/actions/workflows/codeql.yml/badge.svg)](https://github.com/Digiman/simple-services-dashboard/actions/workflows/codeql.yml)
+
+[![Build and deploy a container to an Azure Web App](https://github.com/Digiman/simple-services-dashboard/actions/workflows/azure-container-webapp.yml/badge.svg)](https://github.com/Digiman/simple-services-dashboard/actions/workflows/azure-container-webapp.yml)
+[![Build and deploy ASP.Net Core app to an Azure Web App](https://github.com/Digiman/simple-services-dashboard/actions/workflows/azure-webapps-dotnet-core.yml/badge.svg)](https://github.com/Digiman/simple-services-dashboard/actions/workflows/azure-webapps-dotnet-core.yml)
+
 Simple service to provide the ability to monitor other services check their statuses. Basically it provided a Health Check
 dashboard for them. Services can be configured in the configuration by adding a new one. Because all the services will use same concepts and
 URL routes to monitor and get details about the service.
