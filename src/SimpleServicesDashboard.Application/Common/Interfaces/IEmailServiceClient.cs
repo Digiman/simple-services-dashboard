@@ -1,6 +1,5 @@
-namespace SimpleServicesDashboard.Application.Common.Interfaces
+namespace SimpleServicesDashboard.Application.Common.Interfaces;
+
+public interface IEmailServiceClient : IBaseHttpClient
 {
-    public interface IEmailServiceClient : IBaseHttpClient
-    {
-    }
 }

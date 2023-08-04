@@ -6,29 +6,28 @@ using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Extensions;
 
-namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries
+namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries;
+
+/// <summary>
+/// Get the services descriptions to see what the code, services and environments available by configuration.
+/// </summary>
+public sealed class GetServicesCodeEnvInfoQuery : IRequest<ServicesDescriptionResponse>
+{ }
+
+public sealed class GetServicesCodeEnvInfoQueryHandler : IRequestHandler<GetServicesCodeEnvInfoQuery, ServicesDescriptionResponse>
 {
-    /// <summary>
-    /// Get the services descriptions to see what the code, services and environments available by configuration.
-    /// </summary>
-    public sealed class GetServicesCodeEnvInfoQuery : IRequest<ServicesDescriptionResponse>
-    { }
+    private readonly ILogger<GetServicesCodeEnvInfoQueryHandler> _logger;
+    private readonly IServicesStatusService _servicesStatusService;
 
-    public sealed class GetServicesCodeEnvInfoQueryHandler : IRequestHandler<GetServicesCodeEnvInfoQuery, ServicesDescriptionResponse>
+    public GetServicesCodeEnvInfoQueryHandler(ILogger<GetServicesCodeEnvInfoQueryHandler> logger, IServicesStatusService servicesStatusService)
     {
-        private readonly ILogger<GetServicesCodeEnvInfoQueryHandler> _logger;
-        private readonly IServicesStatusService _servicesStatusService;
+        _logger = logger;
+        _servicesStatusService = servicesStatusService;
+    }
 
-        public GetServicesCodeEnvInfoQueryHandler(ILogger<GetServicesCodeEnvInfoQueryHandler> logger, IServicesStatusService servicesStatusService)
-        {
-            _logger = logger;
-            _servicesStatusService = servicesStatusService;
-        }
-
-        public async Task<ServicesDescriptionResponse> Handle(GetServicesCodeEnvInfoQuery request, CancellationToken cancellationToken)
-        {
-            using var scope = _logger.BeginNamedScope("GetServicesCodeEnvInfo");
-            return await _servicesStatusService.GetServicesDescriptionAsync();
-        }
+    public async Task<ServicesDescriptionResponse> Handle(GetServicesCodeEnvInfoQuery request, CancellationToken cancellationToken)
+    {
+        using var scope = _logger.BeginNamedScope("GetServicesCodeEnvInfo");
+        return await _servicesStatusService.GetServicesDescriptionAsync();
     }
 }

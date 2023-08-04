@@ -6,29 +6,28 @@ using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Extensions;
 
-namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries
+namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries;
+
+/// <summary>
+/// Get statuses for all the services.
+/// </summary>
+public sealed class GetServicesStatusQuery : IRequest<ServicesStatusResponse>
+{ }
+
+public sealed class GetServicesStatusQueryHandler : IRequestHandler<GetServicesStatusQuery, ServicesStatusResponse>
 {
-    /// <summary>
-    /// Get statuses for all the services.
-    /// </summary>
-    public sealed class GetServicesStatusQuery : IRequest<ServicesStatusResponse>
-    { }
+    private readonly ILogger<GetServicesStatusQueryHandler> _logger;
+    private readonly IServicesStatusService _servicesStatusService;
 
-    public sealed class GetServicesStatusQueryHandler : IRequestHandler<GetServicesStatusQuery, ServicesStatusResponse>
+    public GetServicesStatusQueryHandler(ILogger<GetServicesStatusQueryHandler> logger, IServicesStatusService servicesStatusService)
     {
-        private readonly ILogger<GetServicesStatusQueryHandler> _logger;
-        private readonly IServicesStatusService _servicesStatusService;
+        _logger = logger;
+        _servicesStatusService = servicesStatusService;
+    }
 
-        public GetServicesStatusQueryHandler(ILogger<GetServicesStatusQueryHandler> logger, IServicesStatusService servicesStatusService)
-        {
-            _logger = logger;
-            _servicesStatusService = servicesStatusService;
-        }
-
-        public async Task<ServicesStatusResponse> Handle(GetServicesStatusQuery request, CancellationToken cancellationToken)
-        {
-            using var scope = _logger.BeginNamedScope("GetServicesStatus");
-            return await _servicesStatusService.GetServicesStatusAsync();
-        }
+    public async Task<ServicesStatusResponse> Handle(GetServicesStatusQuery request, CancellationToken cancellationToken)
+    {
+        using var scope = _logger.BeginNamedScope("GetServicesStatus");
+        return await _servicesStatusService.GetServicesStatusAsync();
     }
 }

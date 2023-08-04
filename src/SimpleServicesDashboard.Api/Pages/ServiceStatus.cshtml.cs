@@ -3,40 +3,39 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 
-namespace SimpleServicesDashboard.Api.Pages
+namespace SimpleServicesDashboard.Api.Pages;
+
+/// <summary>
+/// Page to see the service details.
+/// </summary>
+public sealed class ServiceStatus : PageModel
 {
-    /// <summary>
-    /// Page to see the service details.
-    /// </summary>
-    public sealed class ServiceStatus : PageModel
+    private readonly IServicesStatusService _servicesStatusService;
+
+    public ServiceStatus(IServicesStatusService servicesStatusService)
     {
-        private readonly IServicesStatusService _servicesStatusService;
+        _servicesStatusService = servicesStatusService;
+    }
 
-        public ServiceStatus(IServicesStatusService servicesStatusService)
+    public ServiceStatusViewModel ServiceStatusViewModel { get; set; }
+
+    public async Task OnGetAsync(string serviceCode, string environment)
+    {
+        ServiceStatusViewModel = await CollectServiceStatus(serviceCode, environment);
+    }
+
+    private async Task<ServiceStatusViewModel> CollectServiceStatus(string serviceCode, string environment)
+    {
+        var serviceStatus = await _servicesStatusService.GetServiceDetailsAsync(serviceCode, environment);
+
+        var result = new ServiceStatusViewModel
         {
-            _servicesStatusService = servicesStatusService;
-        }
+            Url = serviceStatus.Url,
+            ServiceName = serviceStatus.ServiceName,
+            Environment = serviceStatus.Environment,
+            StatusData = serviceStatus.JsonData
+        };
 
-        public ServiceStatusViewModel ServiceStatusViewModel { get; set; }
-
-        public async Task OnGetAsync(string serviceCode, string environment)
-        {
-            ServiceStatusViewModel = await CollectServiceStatus(serviceCode, environment);
-        }
-
-        private async Task<ServiceStatusViewModel> CollectServiceStatus(string serviceCode, string environment)
-        {
-            var serviceStatus = await _servicesStatusService.GetServiceDetailsAsync(serviceCode, environment);
-
-            var result = new ServiceStatusViewModel
-            {
-                Url = serviceStatus.Url,
-                ServiceName = serviceStatus.ServiceName,
-                Environment = serviceStatus.Environment,
-                StatusData = serviceStatus.JsonData
-            };
-
-            return result;
-        }
+        return result;
     }
 }

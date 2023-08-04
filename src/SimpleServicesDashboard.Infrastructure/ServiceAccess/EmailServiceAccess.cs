@@ -4,45 +4,44 @@ using Microsoft.Extensions.Logging;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Models;
 
-namespace SimpleServicesDashboard.Infrastructure.ServiceAccess
+namespace SimpleServicesDashboard.Infrastructure.ServiceAccess;
+
+public sealed class EmailServiceAccess : IEmailServiceAccess, IServiceAccess
 {
-    public sealed class EmailServiceAccess : IEmailServiceAccess, IServiceAccess
+    private readonly ILogger<EmailServiceAccess> _logger;
+    private readonly IEmailServiceClient _comboServiceClient;
+
+    public EmailServiceAccess(ILogger<EmailServiceAccess> logger, IEmailServiceClient comboServiceClient)
     {
-        private readonly ILogger<EmailServiceAccess> _logger;
-        private readonly IEmailServiceClient _comboServiceClient;
+        _logger = logger;
+        _comboServiceClient = comboServiceClient;
+    }
 
-        public EmailServiceAccess(ILogger<EmailServiceAccess> logger, IEmailServiceClient comboServiceClient)
+    public async Task<Models.EmailService.StatusResponse> GetServiceStatus(string url)
+    {
+        try
         {
-            _logger = logger;
-            _comboServiceClient = comboServiceClient;
+            return await _comboServiceClient.Get<Models.EmailService.StatusResponse>(url);
         }
-
-        public async Task<Models.EmailService.StatusResponse> GetServiceStatus(string url)
+        catch (Exception ex)
         {
-            try
-            {
-                return await _comboServiceClient.Get<Models.EmailService.StatusResponse>(url);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred during requesting Email Service status");
+            _logger.LogError(ex, "Error occurred during requesting Email Service status");
 
-                return null;
-            }
+            return null;
         }
+    }
 
-        async Task<StatusResponseBase> IServiceAccess.GetServiceStatus(string url)
+    async Task<StatusResponseBase> IServiceAccess.GetServiceStatus(string url)
+    {
+        try
         {
-            try
-            {
-                return await _comboServiceClient.Get<Models.EmailService.StatusResponse>(url);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred during requesting Email Service status");
+            return await _comboServiceClient.Get<Models.EmailService.StatusResponse>(url);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred during requesting Email Service status");
 
-                return null;
-            }
+            return null;
         }
     }
 }
