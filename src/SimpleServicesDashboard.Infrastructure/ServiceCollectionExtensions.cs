@@ -4,40 +4,39 @@ using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Clients;
 using SimpleServicesDashboard.Infrastructure.ServiceAccess;
 
-namespace SimpleServicesDashboard.Infrastructure
+namespace SimpleServicesDashboard.Infrastructure;
+
+/// <summary>
+/// Dependency registrator for Application stuff.
+/// </summary>
+public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Dependency registrator for Application stuff.
+    /// Register application level dependencies and services.
     /// </summary>
-    public static class ServiceCollectionExtensions
+    /// <param name="services">Services collection.</param>
+    /// <returns>Returns updated services collection.</returns>
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        /// <summary>
-        /// Register application level dependencies and services.
-        /// </summary>
-        /// <param name="services">Services collection.</param>
-        /// <returns>Returns updated services collection.</returns>
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
-        {
-            RegisterApiClients(services);
+        RegisterApiClients(services);
 
-            RegisterServiceAccess(services);
+        RegisterServiceAccess(services);
 
-            return services;
-        }
+        return services;
+    }
 
-        private static void RegisterApiClients(IServiceCollection services)
-        {
-            // register clients - API clients
-            services.AddHttpClient<IEmailServiceClient, EmailServiceClient>("EmailServiceClient")
-                .AddResiliencePolicies(); // default settings from Dodo library!
-        }
+    private static void RegisterApiClients(IServiceCollection services)
+    {
+        // register clients - API clients
+        services.AddHttpClient<IEmailServiceClient, EmailServiceClient>("EmailServiceClient")
+            .AddResiliencePolicies(); // default settings from Dodo library!
+    }
 
-        private static void RegisterServiceAccess(IServiceCollection services)
-        {
-            services.AddTransient<IServiceAccessFactory, ServiceAccessFactory>();
+    private static void RegisterServiceAccess(IServiceCollection services)
+    {
+        services.AddTransient<IServiceAccessFactory, ServiceAccessFactory>();
 
-            // register service access for each individual monitored service
-            services.AddTransient<IEmailServiceAccess, EmailServiceAccess>();
-        }
+        // register service access for each individual monitored service
+        services.AddTransient<IEmailServiceAccess, EmailServiceAccess>();
     }
 }

@@ -4,38 +4,37 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace SimpleServicesDashboard.Application.Common.Behaviours
+namespace SimpleServicesDashboard.Application.Common.Behaviours;
+
+/// <summary>
+/// Common logic to log the request processing with MediatR.
+/// </summary>
+/// <typeparam name="TRequest">Request type.</typeparam>
+/// <typeparam name="TResponse">Response type.</typeparam>
+public sealed class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
 {
-    /// <summary>
-    /// Common logic to log the request processing with MediatR.
-    /// </summary>
-    /// <typeparam name="TRequest">Request type.</typeparam>
-    /// <typeparam name="TResponse">Response type.</typeparam>
-    public sealed class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : IRequest<TResponse>
+    private readonly ILogger<TRequest> _logger;
+
+    public LoggingBehaviour(ILogger<TRequest> logger)
     {
-        private readonly ILogger<TRequest> _logger;
+        _logger = logger;
+    }
 
-        public LoggingBehaviour(ILogger<TRequest> logger)
-        {
-            _logger = logger;
-        }
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    {
+        var requestName = typeof(TRequest).Name;
+        _logger.LogInformation($"Sending a request {requestName}");
 
-        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-        {
-            var requestName = typeof(TRequest).Name;
-            _logger.LogInformation($"Sending a request {requestName}");
+        var sw = new Stopwatch();
+        sw.Start();
 
-            var sw = new Stopwatch();
-            sw.Start();
+        var response = await next();
 
-            var response = await next();
+        sw.Stop();
 
-            sw.Stop();
-
-            var responseName = typeof(TRequest).Name;
-            _logger.LogInformation($"Response {responseName} has been got. Elapsed time = {sw.ElapsedMilliseconds} ms");
-            return response;
-        }
+        var responseName = typeof(TRequest).Name;
+        _logger.LogInformation($"Response {responseName} has been got. Elapsed time = {sw.ElapsedMilliseconds} ms");
+        return response;
     }
 }

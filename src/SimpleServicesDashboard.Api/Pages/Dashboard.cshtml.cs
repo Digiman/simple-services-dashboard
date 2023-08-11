@@ -6,64 +6,63 @@ using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Configuration;
 
-namespace SimpleServicesDashboard.Api.Pages
+namespace SimpleServicesDashboard.Api.Pages;
+
+/// <summary>
+/// Simple default page with details for each monitored service (very basic).
+/// </summary>
+public sealed class Dashboard : PageModel
 {
+    private readonly IServicesStatusService _servicesStatusService;
+    private readonly ServicesConfigurationOptions _servicesConfiguration;
+
     /// <summary>
-    /// Simple default page with details for each monitored service (very basic).
+    /// Model with services details to show on the page after load.
     /// </summary>
-    public sealed class Dashboard : PageModel
+    public DashboardViewModel DashboardData { get; set; }
+
+    public Dashboard(IServicesStatusService servicesStatusService,
+        IOptions<ServicesConfigurationOptions> servicesConfiguration)
     {
-        private readonly IServicesStatusService _servicesStatusService;
-        private readonly ServicesConfigurationOptions _servicesConfiguration;
+        _servicesStatusService = servicesStatusService;
+        _servicesConfiguration = servicesConfiguration.Value;
+    }
 
-        /// <summary>
-        /// Model with services details to show on the page after load.
-        /// </summary>
-        public DashboardViewModel DashboardData { get; set; }
+    public async Task OnGetAsync()
+    {
+        DashboardData = await CollectServicesDetails();
+    }
 
-        public Dashboard(IServicesStatusService servicesStatusService,
-            IOptions<ServicesConfigurationOptions> servicesConfiguration)
-        {
-            _servicesStatusService = servicesStatusService;
-            _servicesConfiguration = servicesConfiguration.Value;
-        }
+    private async Task<DashboardViewModel> CollectServicesDetails()
+    {
+        var details = await _servicesStatusService.GetServicesStatusAsync();
 
-        public async Task OnGetAsync()
-        {
-            DashboardData = await CollectServicesDetails();
-        }
+        var model = new DashboardViewModel();
 
-        private async Task<DashboardViewModel> CollectServicesDetails()
-        {
-            var details = await _servicesStatusService.GetServicesStatusAsync();
+        // build the model to prepare the data in the block on the page
+        var servicesGroup = details.Statuses.GroupBy(x => x.Code);
 
-            var model = new DashboardViewModel();
-
-            // build the model to prepare the data in the block on the page
-            var servicesGroup = details.Statuses.GroupBy(x => x.Code);
-
-            model.Services = servicesGroup.Select(x =>
-                new ServiceViewModel
+        model.Services = servicesGroup.Select(x =>
+            new ServiceViewModel
+            {
+                Code = x.Key,
+                Name = _servicesConfiguration.Services.FirstOrDefault(conf => conf.Code == x.Key)?.Name ?? "",
+                Environments = x.ToDictionary(s => s.Environment, s => new ServiceEnvironmentViewModel
                 {
-                    Code = x.Key,
-                    Name = _servicesConfiguration.Services.FirstOrDefault(conf => conf.Code == x.Key)?.Name ?? "",
-                    Environments = x.ToDictionary(s => s.Environment, s => new ServiceEnvironmentViewModel
-                    {
-                        Name = s.Name,
-                        Created = s.Created,
-                        MachineName = s.MachineName,
-                        EnvironmentName = s.EnvironmentName,
-                        ReleaseDate = s.ReleaseDate,
-                        AppStartTime = s.AppStartTime,
-                        Version = s.Version,
-                        BaseUrl = s.BaseUrl
-                    })
-                }).ToList();
+                    Name = s.Name,
+                    Created = s.Created,
+                    MachineName = s.MachineName,
+                    EnvironmentName = s.EnvironmentName,
+                    ReleaseDate = s.ReleaseDate,
+                    AppStartTime = s.AppStartTime,
+                    Version = s.Version,
+                    BaseUrl = s.BaseUrl
+                })
+            }).ToList();
 
-            // get environments configuration
-            model.Environments = _servicesConfiguration.Environments.ToDictionary(x => x.Code, x => x.Name);
+        // get environments configuration
+        model.Environments = _servicesConfiguration.Environments.ToDictionary(x => x.Code, x => x.Name);
 
-            return model;
-        }
+        return model;
     }
 }
