@@ -34,7 +34,7 @@ Service code: https://github.com/Digiman/simple-services-dashboard
 
 Application developed and used next technologies (on the backend) and components:
 
-* .NET 6 (LTS)
+* .NET 8 (LTS)
 * Serilog for logging
 * Swashbuckle for Swagger (OpenAPI)
 * HealthCheck UI for ASP.NET Core
@@ -70,9 +70,6 @@ TDB
 ## Build Process for Local Development
 
 * You have Docker installed - ideally latest version of the tool.
-* You have .NET 6 installed (SDK and runtime).
+* You have .NET 8 installed (SDK and runtime).
 * Visual Studio or JetBrains Rider or Visual Studio Code as IDE - one of them, better for you, all them is appropriate.
-
-Optionally:
-* [Tye](https://github.com/dotnet/tye) - Project Tye for local development and helper for containers and Kubernetes.
-
+* 
