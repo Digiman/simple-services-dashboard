@@ -17,7 +17,7 @@ public sealed class EmailServiceAccess : IEmailServiceAccess, IServiceAccess
         _comboServiceClient = comboServiceClient;
     }
 
-    public async Task<Models.EmailService.StatusResponse> GetServiceStatus(string url)
+    public async Task<Models.EmailService.StatusResponse?> GetServiceStatus(string url)
     {
         try
         {
@@ -31,7 +31,7 @@ public sealed class EmailServiceAccess : IEmailServiceAccess, IServiceAccess
         }
     }
 
-    async Task<StatusResponseBase> IServiceAccess.GetServiceStatus(string url)
+    async Task<StatusResponseBase?> IServiceAccess.GetServiceStatus(string url)
     {
         try
         {

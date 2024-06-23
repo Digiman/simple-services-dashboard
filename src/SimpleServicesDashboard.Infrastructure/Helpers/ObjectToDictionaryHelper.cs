@@ -11,7 +11,7 @@ public static class ObjectToDictionaryHelper
         return source.ToDictionary<object>();
     }
 
-    public static IDictionary<string, T> ToDictionary<T>(this object source, Func<object, T> transformFunc = null)
+    public static IDictionary<string, T> ToDictionary<T>(this object? source, Func<object, T>? transformFunc = null)
     {
         if (source == null)
         {
@@ -27,10 +27,10 @@ public static class ObjectToDictionaryHelper
         return dictionary;
     }
 
-    private static void AddPropertyToDictionary<T>(PropertyDescriptor property, object source, IDictionary<string, T> dictionary, Func<object, T> transform)
+    private static void AddPropertyToDictionary<T>(PropertyDescriptor property, object? source, IDictionary<string, T> dictionary, Func<object, T>? transform)
     {
-        object value = property.GetValue(source);
-        T newValue;
+        object? value = property.GetValue(source);
+        T? newValue;
         if (transform != null)
         {
             newValue = transform(value);
@@ -40,13 +40,13 @@ public static class ObjectToDictionaryHelper
             newValue = (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(value);
         }
 
-        if (IsOfType<T>(newValue))
+        if (newValue != null && IsOfType<T>(newValue))
         {
             dictionary.Add(property.Name, newValue);
         }
     }
 
-    private static bool IsOfType<T>(object value)
+    private static bool IsOfType<T>(object? value)
     {
         return value is T;
     }

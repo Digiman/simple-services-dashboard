@@ -176,7 +176,7 @@ public sealed class ServicesStatusService : IServicesStatusService
         var serviceAccess = _serviceAccessFactory.GetServiceAccess(code);
         var response = await serviceAccess.GetServiceStatus(url);
 
-        if (response != null)
+        if (response is not null)
         {
             return new ServiceStatusResponse
             {
@@ -292,7 +292,7 @@ public sealed class ServicesStatusService : IServicesStatusService
         };
     }
 
-    private static string SerializeResultToJson(object result)
+    private static string SerializeResultToJson(object? result)
     {
         return JsonSerializer.Serialize(result, new JsonSerializerOptions
         {

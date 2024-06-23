@@ -13,7 +13,7 @@ namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries;
 /// </summary>
 public sealed class GetServiceStatusByCodeQuery : IRequest<ServicesStatusResponse>
 {
-    public string Code { get; set; }
+    public required string Code { get; set; }
 }
 
 public sealed class GetServiceStatusByCodeQueryHandler : IRequestHandler<GetServiceStatusByCodeQuery, ServicesStatusResponse>

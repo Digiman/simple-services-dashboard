@@ -56,7 +56,7 @@ public sealed class ApplicationStatusService : IApplicationStatusService
             EnvironmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
             ReleaseDate = System.IO.File.GetLastWriteTime(assembly.Location).ToUniversalTime(),
             AppStartTime = System.Diagnostics.Process.GetCurrentProcess().StartTime.ToUniversalTime(),
-            Version = Assembly.GetEntryAssembly().GetName().Version.ToString()
+            Version = Assembly.GetEntryAssembly()?.GetName().Version?.ToString()
         };
     }
 
