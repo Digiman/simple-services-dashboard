@@ -5,12 +5,12 @@ namespace SimpleServicesDashboard.Api.Models;
 /// </summary>
 public sealed class ServiceStatusViewModel
 {
-    public string Url { get; set; }
-    public string ServiceName { get; set; }
-    public string Environment { get; set; }
+    public string? Url { get; set; }
+    public string? ServiceName { get; set; }
+    public string? Environment { get; set; }
 
     /// <summary>
     /// Status data from the service endpoint in JSON format.
     /// </summary>
-    public string StatusData { get; set; }
+    public string? StatusData { get; set; }
 }

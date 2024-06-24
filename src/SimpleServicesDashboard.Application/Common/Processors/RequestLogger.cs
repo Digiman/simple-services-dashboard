@@ -10,7 +10,7 @@ namespace SimpleServicesDashboard.Application.Common.Processors;
 /// Logger for al requests in the MediatR.
 /// </summary>
 /// <typeparam name="TRequest">Request.</typeparam>
-public sealed class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
+public sealed class RequestLogger<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
 {
     private readonly ILogger<TRequest> _logger;
 

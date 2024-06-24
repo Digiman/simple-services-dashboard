@@ -13,9 +13,9 @@ namespace SimpleServicesDashboard.Application.Modules.ServiceStatus.Queries;
 /// </summary>
 public sealed class GetServiceStatusQuery : IRequest<ServiceStatusResponse>
 {
-    public string Code { get; set; }
+    public required string Code { get; set; }
 
-    public string Environment { get; set; }
+    public required string Environment { get; set; }
 }
 
 public sealed class GetServiceStatusQueryHandler : IRequestHandler<GetServiceStatusQuery, ServiceStatusResponse>

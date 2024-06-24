@@ -23,48 +23,48 @@ public class BaseHttpClient : IBaseHttpClient
         _httpClient = httpClient;
     }
 
-    public async Task<TResponseModel> Get<TResponseModel>(string url, IDictionary<string, string> queryString = null, Dictionary<string, string> headers = null)
+    public async Task<TResponseModel?> Get<TResponseModel>(string url, IDictionary<string, string>? queryString = null, Dictionary<string, string>? headers = null)
     {
         return await Execute<TResponseModel>(HttpMethod.Get, url, queryString: queryString, headers: headers);
     }
 
-    public Task<TResponseModel> Get<TRequest, TResponseModel>(string url, TRequest requestModel, IDictionary<string, string> headers = null)
+    public Task<TResponseModel?> Get<TRequest, TResponseModel>(string url, TRequest? requestModel, IDictionary<string, string>? headers = null)
     {
-        IDictionary<string, string> queryString = requestModel.ToDictionary<string>(ParameterToString);
+        IDictionary<string, string>? queryString = requestModel.ToDictionary<string>(ParameterToString);
         return Execute<TResponseModel>(HttpMethod.Get, url, queryString, headers);
     }
 
-    public Task<TResponseModel> Post<TRequestModel, TResponseModel>(string url, TRequestModel body, Dictionary<string, string> headers = null)
+    public Task<TResponseModel?> Post<TRequestModel, TResponseModel>(string url, TRequestModel? body, Dictionary<string, string>? headers = null)
     {
         return Execute<TResponseModel>(HttpMethod.Post, url, headers: headers, body: body);
     }
 
-    public async Task Post<TRequestModel>(string url, TRequestModel body, Dictionary<string, string> headers = null)
+    public async Task Post<TRequestModel>(string url, TRequestModel? body, Dictionary<string, string>? headers = null)
     {
         await Execute<TRequestModel>(HttpMethod.Post, url, headers: headers, body: body);
     }
 
-    public Task<TResponseModel> Put<TRequestModel, TResponseModel>(string url, TRequestModel body, Dictionary<string, string> headers = null)
+    public Task<TResponseModel?> Put<TRequestModel, TResponseModel>(string url, TRequestModel? body, Dictionary<string, string>? headers = null)
     {
         return Execute<TResponseModel>(HttpMethod.Put, url, headers: headers, body: body);
     }
 
-    public async Task Put<TRequestModel>(string url, TRequestModel body, Dictionary<string, string> headers = null)
+    public async Task Put<TRequestModel>(string url, TRequestModel? body, Dictionary<string, string>? headers = null)
     {
         await Execute<TRequestModel>(HttpMethod.Put, url, headers: headers, body: body);
     }
 
-    public async Task Delete(string url, Dictionary<string, string> headers = null)
+    public async Task Delete(string url, Dictionary<string, string>? headers = null)
     {
         await Execute<object>(HttpMethod.Delete, url, headers: headers);
     }
 
     #region Helpers.
 
-    private async Task<TResponseModel> Execute<TResponseModel>(HttpMethod method, string url,
-        IDictionary<string, string> queryString = null,
-        IDictionary<string, string> headers = null,
-        object body = null)
+    private async Task<TResponseModel?> Execute<TResponseModel>(HttpMethod method, string url,
+        IDictionary<string, string>? queryString = null,
+        IDictionary<string, string>? headers = null,
+        object? body = null)
     {
         HttpRequestMessage request = BuildRequestMessage(url, method, queryString, headers, body);
 
@@ -80,14 +80,14 @@ public class BaseHttpClient : IBaseHttpClient
         return await Execute<TResponseModel>(method, url, queryString, headers, body);
     }
 
-    private static async Task<TModel> DeserializeResponseBodyAsync<TModel>(HttpResponseMessage response)
+    private static async Task<TModel?> DeserializeResponseBodyAsync<TModel>(HttpResponseMessage response)
     {
         try
         {
             using (var stream = await response.Content.ReadAsStreamAsync())
             using (var reader = new StreamReader(stream))
             {
-                var content = reader.ReadToEnd();
+                var content = await reader.ReadToEndAsync();
 
                 return JsonSerializer.Deserialize<TModel>(content);
             }
@@ -128,8 +128,8 @@ public class BaseHttpClient : IBaseHttpClient
     }
 
     private HttpRequestMessage BuildRequestMessage(string url, HttpMethod method,
-        IDictionary<string, string> queryString = null, IDictionary<string, string> customHeaders = null,
-        object body = null)
+        IDictionary<string, string>? queryString = null, IDictionary<string, string>? customHeaders = null,
+        object? body = null)
     {
         if (string.IsNullOrWhiteSpace(url))
         {
@@ -154,7 +154,7 @@ public class BaseHttpClient : IBaseHttpClient
         return requestMessage;
     }
 
-    private static void SetBody(HttpRequestMessage requestMessage, object body)
+    private static void SetBody(HttpRequestMessage requestMessage, object? body)
     {
         if (body != null)
         {
@@ -165,7 +165,7 @@ public class BaseHttpClient : IBaseHttpClient
         }
     }
 
-    private static void SetHeaders(HttpRequestMessage requestMessage, IDictionary<string, string> headers)
+    private static void SetHeaders(HttpRequestMessage requestMessage, IDictionary<string, string>? headers)
     {
         requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

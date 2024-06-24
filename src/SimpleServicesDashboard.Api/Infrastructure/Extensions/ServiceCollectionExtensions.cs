@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Asp.Versioning;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -133,20 +134,16 @@ public static class ServiceCollectionExtensions
             options.ReportApiVersions = true;
             options.AssumeDefaultVersionWhenUnspecified = true;
             options.DefaultApiVersion = new ApiVersion(1, 0);
+        }).AddApiExplorer(options =>
+        {
+            // add the versioned API explorer, which also adds IApiVersionDescriptionProvider service
+            // note: the specified format code will format the version as "'v'major[.minor][-status]"
+            options.GroupNameFormat = "'v'VVV";
+
+            // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+            // can also be used to control the format of the API version in route templates
+            options.SubstituteApiVersionInUrl = true;
         });
-
-        // add API Explorer - to work with API versions
-        services.AddVersionedApiExplorer(
-            options =>
-            {
-                // add the versioned API explorer, which also adds IApiVersionDescriptionProvider service
-                // note: the specified format code will format the version as "'v'major[.minor][-status]"
-                options.GroupNameFormat = "'v'VVV";
-
-                // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
-                // can also be used to control the format of the API version in route templates
-                options.SubstituteApiVersionInUrl = true;
-            });
 
         return services;
     }
@@ -232,7 +229,7 @@ public static class ServiceCollectionExtensions
         var healthCheckConfig = configuration.GetHealthCheckConfiguration();
         var servicesConfiguration = configuration.GetServicesConfigurationOptions();
 
-        if (healthCheckConfig.HealthCheckUiEnabled)
+        if (healthCheckConfig is { HealthCheckUiEnabled: true })
         {
             services
                 .AddHealthChecksUI(opt =>

@@ -15,7 +15,7 @@ public sealed class StatusResponse
     /// <summary>
     /// Application information.
     /// </summary>
-    public AppInfo AppInfo { get; set; }
+    public AppInfo? AppInfo { get; set; }
 }
 
 /// <summary>
@@ -23,9 +23,9 @@ public sealed class StatusResponse
 /// </summary>
 public sealed class AppInfo
 {
-    public string MachineName { get; set; }
-    public string EnvironmentName { get; set; }
+    public string? MachineName { get; set; }
+    public string? EnvironmentName { get; set; }
     public DateTime ReleaseDate { get; set; }
     public DateTime AppStartTime { get; set; }
-    public string Version { get; set; }
+    public string? Version { get; set; }
 }

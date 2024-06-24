@@ -12,10 +12,10 @@ public class StatusResponseBase
     public DateTime Created { get; set; }
 
     [System.Text.Json.Serialization.JsonPropertyName("appInfo")]
-    public AppInfo AppInfo { get; set; }
+    public AppInfo? AppInfo { get; set; }
 
     [System.Text.Json.Serialization.JsonPropertyName("databaseInfo")]
-    public DatabaseInfo DatabaseInfo { get; set; }
+    public DatabaseInfo? DatabaseInfo { get; set; }
 }
 
 /// <summary>
@@ -24,15 +24,15 @@ public class StatusResponseBase
 public sealed class AppInfo
 {
     [System.Text.Json.Serialization.JsonPropertyName("machineName")]
-    public string MachineName { get; set; }
+    public string? MachineName { get; set; }
     [System.Text.Json.Serialization.JsonPropertyName("environmentName")]
-    public string EnvironmentName { get; set; }
+    public string? EnvironmentName { get; set; }
     [System.Text.Json.Serialization.JsonPropertyName("releaseDate")]
     public DateTime ReleaseDate { get; set; }
     [System.Text.Json.Serialization.JsonPropertyName("appStartTime")]
     public DateTime AppStartTime { get; set; }
     [System.Text.Json.Serialization.JsonPropertyName("version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 }
 
 /// <summary>
@@ -41,9 +41,9 @@ public sealed class AppInfo
 public sealed class DatabaseInfo
 {
     [System.Text.Json.Serialization.JsonPropertyName("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
     [System.Text.Json.Serialization.JsonPropertyName("connectionString")]
-    public string ConnectionString { get; set; }
+    public string? ConnectionString { get; set; }
     [System.Text.Json.Serialization.JsonPropertyName("databaseName")]
-    public string DatabaseName { get; set; }
+    public string? DatabaseName { get; set; }
 }

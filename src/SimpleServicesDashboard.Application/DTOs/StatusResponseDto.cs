@@ -15,7 +15,7 @@ public sealed class StatusResponseDto
     /// <summary>
     /// Application information.
     /// </summary>
-    public AppInfoDto AppInfo { get; set; }
+    public AppInfoDto? AppInfo { get; set; }
 }
 
 /// <summary>
@@ -23,9 +23,9 @@ public sealed class StatusResponseDto
 /// </summary>
 public sealed class AppInfoDto
 {
-    public string MachineName { get; set; }
-    public string EnvironmentName { get; set; }
+    public string? MachineName { get; set; }
+    public string? EnvironmentName { get; set; }
     public DateTime ReleaseDate { get; set; }
     public DateTime AppStartTime { get; set; }
-    public string Version { get; set; }
+    public string? Version { get; set; }
 }
