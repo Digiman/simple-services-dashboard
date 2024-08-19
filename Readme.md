@@ -72,4 +72,3 @@ TDB
 * You have Docker installed - ideally latest version of the tool.
 * You have .NET 8 installed (SDK and runtime).
 * Visual Studio or JetBrains Rider or Visual Studio Code as IDE - one of them, better for you, all them is appropriate.
-* 

@@ -27,12 +27,12 @@ public sealed class EnvironmentConfiguration
     /// <summary>
     /// Short environment code.
     /// </summary>
-    public string Code { get; set; }
+    public required string Code { get; set; }
 
     /// <summary>
     /// Full environment name.
     /// </summary>
-    public string Name { get; set; }
+    public required string Name { get; set; }
 }
 
 /// <summary>
@@ -40,15 +40,17 @@ public sealed class EnvironmentConfiguration
 /// </summary>
 public sealed class ServiceConfiguration
 {
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public string HealthEndpoint { get; set; }
-    public string AboutEndpoint { get; set; }
+    public required string Code { get; set; }
+    public required string Name { get; set; }
+    public required string HealthEndpoint { get; set; } = "/health";
+    public required string AboutEndpoint { get; set; } = "/api/v1/status";
+    public required string HealthcheckDashboardEndpoint { get; set; } = "/healthcheck-dashboard";
+    public required string SwaggerEndpoint { get; set; } = "/swagger";
 
     /// <summary>
     /// Specific configuration for each available and monitored environment.
     /// </summary>
-    public List<ServiceEnvironment> Environments { get; set; }
+    public required List<ServiceEnvironment> Environments { get; set; }
 }
 
 /// <summary>
@@ -59,12 +61,12 @@ public sealed class ServiceEnvironment
     /// <summary>
     /// Environment short code (dev, qa, uat, prod).
     /// </summary>
-    public string Environment { get; set; }
+    public required string Environment { get; set; }
 
     /// <summary>
     /// Base URL to the service.
     /// </summary>
-    public string BaseUrl { get; set; }
+    public required string BaseUrl { get; set; }
 }
 
 public sealed class ServicesConfigurationOptionsValidator : AbstractValidator<ServicesConfigurationOptions>

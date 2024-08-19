@@ -32,8 +32,8 @@ public sealed class ServiceEnvironmentViewModel
 
 public sealed class ServiceDetailsViewModel
 {
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public string EnvironmentCode { get; set; }
-    public ServiceEnvironmentViewModel ServiceDetailsModel { get; set; }
+    public required string Code { get; set; }
+    public required string Name { get; set; }
+    public required string EnvironmentCode { get; set; }
+    public required ServiceEnvironmentViewModel ServiceDetailsModel { get; set; }
 }

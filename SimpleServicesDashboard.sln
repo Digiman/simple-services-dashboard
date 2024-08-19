@@ -1,20 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Api", "src\SimpleServicesDashboard.Api\SimpleServicesDashboard.Api.csproj", "{F98ED69A-9575-4A09-B057-B4777D1CEA2B}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServicesDashboard.Api", "src\SimpleServicesDashboard.Api\SimpleServicesDashboard.Api.csproj", "{F98ED69A-9575-4A09-B057-B4777D1CEA2B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71B651C8-3952-45CE-88EE-FA92ACC91260}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{266B464D-79A9-442F-A321-844DA6BDB1F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Common", "src\SimpleServicesDashboard.Common\SimpleServicesDashboard.Common.csproj", "{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServicesDashboard.Common", "src\SimpleServicesDashboard.Common\SimpleServicesDashboard.Common.csproj", "{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Application", "src\SimpleServicesDashboard.Application\SimpleServicesDashboard.Application.csproj", "{42D8E9FB-7EDF-448E-A798-E9C474C47A73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServicesDashboard.Application", "src\SimpleServicesDashboard.Application\SimpleServicesDashboard.Application.csproj", "{42D8E9FB-7EDF-448E-A798-E9C474C47A73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Infrastructure", "src\SimpleServicesDashboard.Infrastructure\SimpleServicesDashboard.Infrastructure.csproj", "{8A38D3A0-38FF-4B61-A9CC-3B97182C18A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServicesDashboard.Infrastructure", "src\SimpleServicesDashboard.Infrastructure\SimpleServicesDashboard.Infrastructure.csproj", "{8A38D3A0-38FF-4B61-A9CC-3B97182C18A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Infrastructure.Models", "src\SimpleServicesDashboard.Infrastructure.Models\SimpleServicesDashboard.Infrastructure.Models.csproj", "{F5DEFFA1-774F-44F0-9FC8-9190D2F5AFC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServicesDashboard.Infrastructure.Models", "src\SimpleServicesDashboard.Infrastructure.Models\SimpleServicesDashboard.Infrastructure.Models.csproj", "{F5DEFFA1-774F-44F0-9FC8-9190D2F5AFC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServicesDashboard.Application.Tests", "tests\SimpleServicesDashboard.Application.Tests\SimpleServicesDashboard.Application.Tests.csproj", "{B0440C2C-55C4-4276-BA6A-F09CF89E9B28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServicesDashboard.Application.Tests", "tests\SimpleServicesDashboard.Application.Tests\SimpleServicesDashboard.Application.Tests.csproj", "{B0440C2C-55C4-4276-BA6A-F09CF89E9B28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F89E0BD-D325-4A27-8966-3280F860FB7C}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +56,9 @@ Global
 		{B0440C2C-55C4-4276-BA6A-F09CF89E9B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0440C2C-55C4-4276-BA6A-F09CF89E9B28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F98ED69A-9575-4A09-B057-B4777D1CEA2B} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
 		{5BBBDDAE-7A70-47DB-A8F6-2C0D4F9B719A} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
@@ -54,5 +66,8 @@ Global
 		{8A38D3A0-38FF-4B61-A9CC-3B97182C18A3} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
 		{F5DEFFA1-774F-44F0-9FC8-9190D2F5AFC9} = {71B651C8-3952-45CE-88EE-FA92ACC91260}
 		{B0440C2C-55C4-4276-BA6A-F09CF89E9B28} = {266B464D-79A9-442F-A321-844DA6BDB1F0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5402085B-5010-4627-8D80-C9D87F9F9162}
 	EndGlobalSection
 EndGlobal

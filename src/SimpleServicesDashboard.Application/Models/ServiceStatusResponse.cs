@@ -32,7 +32,10 @@ public sealed class ServiceStatusResponse
 
 public sealed class ServiceDetailsResponse
 {
-    public string? Url { get; set; }
+    public string? AboutUrl { get; set; }
+    public string? HealthUrl { get; set; }
+    public string? HealthcheckDashboardUrl { get; set; }
+    public string? SwaggerdUrl { get; set; }
     public string? ServiceName { get; set; }
     public string? Environment { get; set; }
     public string? JsonData { get; set; }

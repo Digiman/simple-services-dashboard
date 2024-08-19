@@ -30,7 +30,10 @@ public sealed class ServiceStatus : PageModel
 
         var result = new ServiceStatusViewModel
         {
-            Url = serviceStatus.Url,
+            AboutUrl = serviceStatus.AboutUrl,
+            HealthUrl = serviceStatus.HealthUrl,
+            HealthcheckDashboardUrl = serviceStatus.HealthcheckDashboardUrl,
+            SwaggerdUrl = serviceStatus.SwaggerdUrl,
             ServiceName = serviceStatus.ServiceName,
             Environment = serviceStatus.Environment,
             StatusData = serviceStatus.JsonData
