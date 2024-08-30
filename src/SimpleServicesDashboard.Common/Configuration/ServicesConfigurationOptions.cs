@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using FluentValidation;
+using System.Collections.Generic;
 
 namespace SimpleServicesDashboard.Common.Configuration;
 
@@ -11,12 +11,12 @@ public sealed class ServicesConfigurationOptions
     /// <summary>
     /// Environment configurations.
     /// </summary>
-    public List<EnvironmentConfiguration> Environments { get; set; }
+    public required List<EnvironmentConfiguration> Environments { get; set; } = [];
 
     /// <summary>
     /// List of the services to monitor with configuration.
     /// </summary>
-    public List<ServiceConfiguration> Services { get; set; }
+    public required List<ServiceConfiguration> Services { get; set; } = [];
 }
 
 /// <summary>

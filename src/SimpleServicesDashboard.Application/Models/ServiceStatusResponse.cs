@@ -15,9 +15,9 @@ public sealed class ServicesStatusResponse
 
 public sealed class ServiceStatusResponse
 {
-    public string? Name { get; set; }
-    public string? Code { get; set; }
-    public string? Environment { get; set; }
+    public required string Name { get; set; }
+    public required string Code { get; set; }
+    public required string Environment { get; set; }
 
     public DateTime Created { get; set; }
 

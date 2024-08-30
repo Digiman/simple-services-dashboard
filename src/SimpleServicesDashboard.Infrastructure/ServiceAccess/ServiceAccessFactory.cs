@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleServicesDashboard.Application.Common.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace SimpleServicesDashboard.Infrastructure.ServiceAccess;
 

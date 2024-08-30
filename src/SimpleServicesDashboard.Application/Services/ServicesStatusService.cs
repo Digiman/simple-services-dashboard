@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Application.Services;
 

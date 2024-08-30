@@ -58,8 +58,4 @@
       <ProjectReference Include="..\SimpleServicesDashboard.Infrastructure\SimpleServicesDashboard.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="Properties\PublishProfiles\IISProfile.pubxml" />
-    </ItemGroup>
-    
 </Project>

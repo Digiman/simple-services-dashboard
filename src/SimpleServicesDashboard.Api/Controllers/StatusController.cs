@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Asp.Versioning;
 using AutoMapper;
 using MediatR;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleServicesDashboard.Application.DTOs;
 using SimpleServicesDashboard.Application.Modules.Status.Queries;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Api.Controllers;
 

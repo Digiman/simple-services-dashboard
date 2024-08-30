@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Api.Pages;
 
