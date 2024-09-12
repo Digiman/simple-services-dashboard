@@ -1,10 +1,10 @@
-using System.Reflection;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleServicesDashboard.Application.Common.Behaviours;
 using SimpleServicesDashboard.Application.Services;
 using SimpleServicesDashboard.Application.Services.Interfaces;
+using System.Reflection;
 
 namespace SimpleServicesDashboard.Application;
 

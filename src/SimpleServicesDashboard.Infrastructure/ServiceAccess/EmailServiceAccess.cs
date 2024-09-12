@@ -1,8 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Infrastructure.ServiceAccess;
 

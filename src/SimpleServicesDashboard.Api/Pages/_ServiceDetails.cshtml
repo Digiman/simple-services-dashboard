@@ -11,7 +11,11 @@ else
     <div>
         Version: <span class="badge rounded-pill bg-primary">@Model.ServiceDetailsModel.Version</span>
         <br/>
-        BaseUrl: <a href="@Model.ServiceDetailsModel.BaseUrl">@Model.ServiceDetailsModel.BaseUrl</a>
+        BaseUrl:
+        <a class="icon-link" href="@Model.ServiceDetailsModel.BaseUrl" target="_blank">
+            @Model.ServiceDetailsModel.BaseUrl
+            <i class="bi bi-box-arrow-up-right"></i>
+        </a>
         <br/>
         Environment Config Name: @Model.ServiceDetailsModel.EnvironmentName
         <br/>
@@ -24,6 +28,8 @@ else
         App Start Time: @Model.ServiceDetailsModel.AppStartTime
     </div>
     <div>
-        <a asp-page="/ServiceStatus" asp-route-serviceCode="@Model.Code" asp-route-environment="@Model.EnvironmentCode" type="button" class="btn btn-primary btn-sm">Service Status</a>
+        <a asp-page="/ServiceStatus" asp-route-serviceCode="@Model.Code" asp-route-environment="@Model.EnvironmentCode" type="button" class="btn btn-primary btn-sm">
+            <i class="bi bi-app-indicator"></i> Service Status
+        </a>
     </div>
 }

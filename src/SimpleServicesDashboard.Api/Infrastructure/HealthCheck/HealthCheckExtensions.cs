@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using SimpleServicesDashboard.Common.Configuration;
+using System.Collections.Generic;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck;
 
@@ -11,10 +11,10 @@ namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck;
 public static class HealthCheckExtensions
 {
     public static IHealthChecksBuilder AddMemoryHealthCheck(this IHealthChecksBuilder builder, HealthStatus? failureStatus = null,
-        IEnumerable<string> tags = default, long? thresholdInBytes = null)
+        IEnumerable<string>? tags = default, long? thresholdInBytes = null)
     {
         // Register a check of type GCInfo.
-        builder.AddCheck<MemoryHealthCheck>(MemoryHealthCheck.Name, failureStatus ?? HealthStatus.Degraded, tags);
+        builder.AddCheck<MemoryHealthCheck>(MemoryHealthCheck.Name, failureStatus ?? HealthStatus.Degraded, tags, timeout: null);
 
         // Configure named options to pass the threshold into the check.
         if (thresholdInBytes.HasValue)

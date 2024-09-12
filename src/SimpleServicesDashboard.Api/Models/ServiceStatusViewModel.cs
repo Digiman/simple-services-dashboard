@@ -5,7 +5,10 @@ namespace SimpleServicesDashboard.Api.Models;
 /// </summary>
 public sealed class ServiceStatusViewModel
 {
-    public string? Url { get; set; }
+    public required string? AboutUrl { get; set; }
+    public required string? HealthUrl { get; set; }
+    public required string? HealthcheckDashboardUrl { get; set; }
+    public required string? SwaggerdUrl { get; set; }
     public string? ServiceName { get; set; }
     public string? Environment { get; set; }
 

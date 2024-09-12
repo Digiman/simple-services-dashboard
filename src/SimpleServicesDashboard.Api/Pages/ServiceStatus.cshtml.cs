@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Api.Pages;
 
@@ -30,7 +30,10 @@ public sealed class ServiceStatus : PageModel
 
         var result = new ServiceStatusViewModel
         {
-            Url = serviceStatus.Url,
+            AboutUrl = serviceStatus.AboutUrl,
+            HealthUrl = serviceStatus.HealthUrl,
+            HealthcheckDashboardUrl = serviceStatus.HealthcheckDashboardUrl,
+            SwaggerdUrl = serviceStatus.SwaggerdUrl,
             ServiceName = serviceStatus.ServiceName,
             Environment = serviceStatus.Environment,
             StatusData = serviceStatus.JsonData

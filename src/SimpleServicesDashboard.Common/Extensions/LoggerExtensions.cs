@@ -1,6 +1,6 @@
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using Microsoft.Extensions.Logging;
 
 namespace SimpleServicesDashboard.Common.Extensions;
 
@@ -9,7 +9,7 @@ namespace SimpleServicesDashboard.Common.Extensions;
 /// </summary>
 public static class LoggerExtensions
 {
-    public static IDisposable BeginNamedScope(this ILogger logger,
+    public static IDisposable? BeginNamedScope(this ILogger logger,
         string name, params ValueTuple<string, object>[] properties)
     {
         var dictionary = properties.ToDictionary(p => p.Item1, p => p.Item2);
@@ -17,7 +17,7 @@ public static class LoggerExtensions
         return logger.BeginScope(dictionary);
     }
 
-    public static IDisposable BeginPropertyScope(this ILogger logger,
+    public static IDisposable? BeginPropertyScope(this ILogger logger,
         params ValueTuple<string, object>[] properties)
     {
         var dictionary = properties.ToDictionary(p => p.Item1, p => p.Item2);

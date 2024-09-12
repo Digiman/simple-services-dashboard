@@ -1,9 +1,3 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 using Asp.Versioning;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +16,12 @@ using SimpleServicesDashboard.Application.Common.Exceptions;
 using SimpleServicesDashboard.Common.Extensions;
 using SimpleServicesDashboard.Infrastructure;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using ProblemDetailsOptions = Hellang.Middleware.ProblemDetails.ProblemDetailsOptions;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.Extensions;

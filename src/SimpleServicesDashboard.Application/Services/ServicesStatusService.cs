@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Application.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Application.Services;
 
@@ -102,10 +102,10 @@ public sealed class ServicesStatusService : IServicesStatusService
 
             if (serviceEnvironment != null)
             {
-                var url = serviceEnvironment.BaseUrl + serviceConfiguration.AboutEndpoint;
+                var aboutUrl = serviceEnvironment.BaseUrl + serviceConfiguration.AboutEndpoint;
 
                 return CheckServiceCode(serviceConfiguration.Code)
-                    ? await BuildServiceResponseAsync(url, environment, serviceConfiguration.Name, serviceConfiguration.Code, serviceEnvironment.BaseUrl)
+                    ? await BuildServiceResponseAsync(aboutUrl, environment, serviceConfiguration.Name, serviceConfiguration.Code, serviceEnvironment.BaseUrl)
                     : BuildEmptyResult(serviceConfiguration, serviceEnvironment);
             }
         }
@@ -124,10 +124,13 @@ public sealed class ServicesStatusService : IServicesStatusService
 
             if (serviceEnvironment != null)
             {
-                var url = serviceEnvironment.BaseUrl + serviceConfiguration.AboutEndpoint;
+                var aboutUrl = serviceEnvironment.BaseUrl + serviceConfiguration.AboutEndpoint;
+                var healthUrl = serviceEnvironment.BaseUrl + serviceConfiguration.HealthEndpoint;
+                var healthcheckDashboardUrl = serviceEnvironment.BaseUrl + serviceConfiguration.HealthcheckDashboardEndpoint;
+                var swaggerUrl = serviceEnvironment.BaseUrl + serviceConfiguration.SwaggerEndpoint;
 
                 return CheckServiceCode(serviceConfiguration.Code)
-                    ? await BuildServiceDetailsResponseAsync(url, environmentName, serviceConfiguration.Name, serviceConfiguration.Code)
+                    ? await BuildServiceDetailsResponseAsync(aboutUrl, healthUrl, healthcheckDashboardUrl, swaggerUrl, environmentName, serviceConfiguration.Name, serviceConfiguration.Code)
                     : BuildEmptyServiceDetailsResult(serviceConfiguration, environmentName);
             }
         }
@@ -161,8 +164,9 @@ public sealed class ServicesStatusService : IServicesStatusService
 
         foreach (var servicesConfigurationEnvironment in servicesConfiguration.Environments)
         {
-            var url = servicesConfigurationEnvironment.BaseUrl + servicesConfiguration.AboutEndpoint;
-            tasks.Add(BuildServiceResponseAsync(url, servicesConfigurationEnvironment.Environment,
+            var aboutUrl = servicesConfigurationEnvironment.BaseUrl + servicesConfiguration.AboutEndpoint;
+
+            tasks.Add(BuildServiceResponseAsync(aboutUrl, servicesConfigurationEnvironment.Environment,
                 servicesConfiguration.Name, servicesConfiguration.Code, servicesConfigurationEnvironment.BaseUrl));
         }
 
@@ -171,10 +175,10 @@ public sealed class ServicesStatusService : IServicesStatusService
         return taskResults.ToList();
     }
 
-    private async Task<ServiceStatusResponse> BuildServiceResponseAsync(string url, string environment, string name, string code, string baseUrl)
+    private async Task<ServiceStatusResponse> BuildServiceResponseAsync(string aboutUrl, string environment, string name, string code, string baseUrl)
     {
         var serviceAccess = _serviceAccessFactory.GetServiceAccess(code);
-        var response = await serviceAccess.GetServiceStatus(url);
+        var response = await serviceAccess.GetServiceStatus(aboutUrl);
 
         if (response is not null)
         {
@@ -196,14 +200,17 @@ public sealed class ServicesStatusService : IServicesStatusService
         return CreateDefaultResponse(code, name, environment);
     }
 
-    private async Task<ServiceDetailsResponse> BuildServiceDetailsResponseAsync(string url, string environment, string name, string code)
+    private async Task<ServiceDetailsResponse> BuildServiceDetailsResponseAsync(string aboutUrl, string healthUrl, string healthcheckDashboardUrl, string swaggerUrl, string environment, string name, string code)
     {
         var serviceAccess = _serviceAccessFactory.GetServiceAccess(code);
-        var result = await serviceAccess.GetServiceStatus(url);
+        var result = await serviceAccess.GetServiceStatus(aboutUrl);
 
         return new ServiceDetailsResponse
         {
-            Url = url,
+            AboutUrl = aboutUrl,
+            HealthUrl = healthUrl,
+            HealthcheckDashboardUrl = healthcheckDashboardUrl,
+            SwaggerdUrl = swaggerUrl,
             ServiceName = name,
             Environment = environment,
             JsonData = SerializeResultToJson(result)
@@ -285,10 +292,13 @@ public sealed class ServicesStatusService : IServicesStatusService
     {
         return new ServiceDetailsResponse
         {
-            Url = "",
+            AboutUrl = string.Empty,
+            HealthUrl = string.Empty,
+            HealthcheckDashboardUrl = string.Empty,
+            SwaggerdUrl = string.Empty,
             ServiceName = serviceConfiguration.Name,
             Environment = environment,
-            JsonData = ""
+            JsonData = string.Empty
         };
     }
 

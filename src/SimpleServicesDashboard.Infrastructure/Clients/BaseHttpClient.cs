@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.WebUtilities;
+using SimpleServicesDashboard.Application.Common.Interfaces;
+using SimpleServicesDashboard.Infrastructure.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,9 +11,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
-using SimpleServicesDashboard.Application.Common.Interfaces;
-using SimpleServicesDashboard.Infrastructure.Helpers;
 
 namespace SimpleServicesDashboard.Infrastructure.Clients;
 
@@ -185,7 +185,7 @@ public class BaseHttpClient : IBaseHttpClient
     /// </summary>
     /// <param name="obj">The parameter (header, path, query, form).</param>
     /// <returns>Formatted string.</returns>
-    private static string ParameterToString(object obj)
+    private static string? ParameterToString(object obj)
     {
         switch (obj)
         {

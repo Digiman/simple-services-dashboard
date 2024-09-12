@@ -1,10 +1,10 @@
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Configuration;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Api.Pages;
 
@@ -37,12 +37,10 @@ public sealed class Dashboard : PageModel
     {
         var details = await _servicesStatusService.GetServicesStatusAsync();
 
-        var model = new DashboardViewModel();
-
         // build the model to prepare the data in the block on the page
         var servicesGroup = details.Statuses.GroupBy(x => x.Code);
 
-        model.Services = servicesGroup.Select(x =>
+        var services = servicesGroup.Select(x =>
             new ServiceViewModel
             {
                 Code = x.Key,
@@ -61,8 +59,12 @@ public sealed class Dashboard : PageModel
             }).ToList();
 
         // get environments configuration
-        model.Environments = _servicesConfiguration.Environments.ToDictionary(x => x.Code, x => x.Name);
+        var environments = _servicesConfiguration.Environments.ToDictionary(x => x.Code, x => x.Name);
 
-        return model;
+        return new DashboardViewModel
+        {
+            Services = services,
+            Environments = environments
+        };
     }
 }
