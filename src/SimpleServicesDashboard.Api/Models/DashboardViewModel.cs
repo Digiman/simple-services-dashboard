@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace SimpleServicesDashboard.Api.Models;
 
 public sealed class DashboardViewModel

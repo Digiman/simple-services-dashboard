@@ -1,10 +1,6 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Common.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck;
 

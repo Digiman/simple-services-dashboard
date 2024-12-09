@@ -1,5 +1,4 @@
 using Asp.Versioning.ApiExplorer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 using SimpleServicesDashboard.Api.Infrastructure.Helpers;

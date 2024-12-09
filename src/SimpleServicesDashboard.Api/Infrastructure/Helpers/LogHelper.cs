@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Serilog;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.Helpers;

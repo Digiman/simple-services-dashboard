@@ -1,9 +1,5 @@
 using Asp.Versioning.ApiExplorer;
 using Hellang.Middleware.ProblemDetails;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 using SimpleServicesDashboard.Api.Infrastructure.Extensions;
 using SimpleServicesDashboard.Common.Extensions;

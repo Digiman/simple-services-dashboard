@@ -1,9 +1,6 @@
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Application.Common.Processors;
 

@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace SimpleServicesDashboard.Application.Common.Interfaces;
 
 public interface IBaseHttpClient

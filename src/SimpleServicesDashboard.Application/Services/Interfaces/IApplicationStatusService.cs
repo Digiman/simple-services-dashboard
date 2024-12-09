@@ -1,5 +1,4 @@
 using SimpleServicesDashboard.Application.Models;
-using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Application.Services.Interfaces;
 

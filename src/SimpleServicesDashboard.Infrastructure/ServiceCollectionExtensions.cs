@@ -1,4 +1,3 @@
-using Dodo.HttpClientResiliencePolicies;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleServicesDashboard.Application.Common.Interfaces;
 using SimpleServicesDashboard.Infrastructure.Clients;
@@ -29,7 +28,7 @@ public static class ServiceCollectionExtensions
     {
         // register clients - API clients
         services.AddHttpClient<IEmailServiceClient, EmailServiceClient>("EmailServiceClient")
-            .AddResiliencePolicies(); // default settings from Dodo library!
+            .AddStandardResilienceHandler();
     }
 
     private static void RegisterServiceAccess(IServiceCollection services)

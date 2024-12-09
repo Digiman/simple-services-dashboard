@@ -3,8 +3,6 @@ using Microsoft.Extensions.Options;
 using SimpleServicesDashboard.Api.Models;
 using SimpleServicesDashboard.Application.Services.Interfaces;
 using SimpleServicesDashboard.Common.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SimpleServicesDashboard.Api.Pages;
 
