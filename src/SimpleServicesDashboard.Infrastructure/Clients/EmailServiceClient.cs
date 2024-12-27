@@ -1,5 +1,4 @@
 using SimpleServicesDashboard.Application.Common.Interfaces;
-using System.Net.Http;
 
 namespace SimpleServicesDashboard.Infrastructure.Clients;
 

@@ -1,5 +1,4 @@
 using FluentValidation;
-using System.Collections.Generic;
 
 namespace SimpleServicesDashboard.Common.Configuration;
 

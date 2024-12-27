@@ -1,5 +1,3 @@
-using System;
-
 namespace SimpleServicesDashboard.Infrastructure.Models;
 
 /// <summary>

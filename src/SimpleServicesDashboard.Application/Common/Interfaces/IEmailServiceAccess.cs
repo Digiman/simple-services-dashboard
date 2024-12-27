@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace SimpleServicesDashboard.Application.Common.Interfaces;
 
 public interface IEmailServiceAccess

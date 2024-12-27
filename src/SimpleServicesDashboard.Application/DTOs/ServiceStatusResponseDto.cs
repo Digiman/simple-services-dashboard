@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace SimpleServicesDashboard.Application.DTOs;
 
 public sealed class ServicesStatusResponseDto

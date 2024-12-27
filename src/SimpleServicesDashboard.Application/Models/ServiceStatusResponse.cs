@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace SimpleServicesDashboard.Application.Models;
 
 public sealed class ServicesStatusResponse

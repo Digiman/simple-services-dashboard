@@ -1,7 +1,5 @@
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using SimpleServicesDashboard.Common.Configuration;
-using System.Collections.Generic;
 
 namespace SimpleServicesDashboard.Api.Infrastructure.HealthCheck;
 

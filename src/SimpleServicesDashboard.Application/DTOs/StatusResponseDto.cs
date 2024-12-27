@@ -1,5 +1,3 @@
-using System;
-
 namespace SimpleServicesDashboard.Application.DTOs;
 
 /// <summary>

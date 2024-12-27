@@ -1,5 +1,3 @@
-using System;
-
 namespace SimpleServicesDashboard.Api.Infrastructure;
 
 /// <summary>
